@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: url('../imagenes/background4.jpg') repeat;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.logo {
+    width: 100px;
+}
+
+.selection-container {
+    background: rgba(255, 255, 255, 34);
+    border-radius: 15px;
+    padding: 30px;
+    display: inline-block;
+    margin-top: 120px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.selection-container h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.options-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.genre-box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 200px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.genre-box:hover {
+    transform: translateY(-5px);
+}
+
+.genre-icon {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.genre-box p {
+    font-size: 18px;
+    font-weight: bold;
+}

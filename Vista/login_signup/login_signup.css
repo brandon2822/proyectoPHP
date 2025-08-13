@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f6f3fb;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.registro-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 420px;
+    position: relative;
+}
+
+.logo-volver {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: black;
+}
+
+
+.flecha {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.registro-formulario {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+
+.icono-formulario img {
+    width: 80px;
+    height: 80px;
+    background-color: #f3edf9;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.formulario {
+    flex: 1;
+}
+
+.formulario h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.formulario label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.enlaces {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.enlaces a {
+    color: #7f5af0;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.enlaces a:hover {
+    text-decoration: underline;
+}
+
+.logo-libronet {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.logo-volver {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+}
+
+.flecha {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.logo-libronet {
+    height: 40px;
+    vertical-align: middle;
+}
+.logo-volver-img {
+    height: 50px;
+    width: auto;
+}
+.btn-ingresar {
+    width: 30%;
+    padding: 0.8rem;
+    background-color: #8a5dfc;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-ingresar:hover {
+    background-color: #7a4de0;
+}

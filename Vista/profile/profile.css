@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    background: url('../imagenes/background3.png') repeat;
+    background-size: 50%;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.overlay-transparente {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+.contenedor-perfil {
+    display: flex;
+    gap: 3rem;
+    background-color: white;
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 100%;
+}
+
+.tarjeta-perfil {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #e0e0e0;
+}
+
+.imagen-perfil img {
+    width: 79%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.icono-editar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.icono-editar img {
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+}
+.contenedor-perfil {
+    position: relative;
+}
+.datos-usuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.logo-libronet img {
+    width: 140px;
+    margin-bottom: 1rem;
+}
+
+.datos-usuario h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.datos-usuario p {
+    margin: 6px 0;
+    font-size: 16px;
+}
+
+.descripcion {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-left: 4px solid #8a5dfc;
+    border-radius: 8px;
+}
