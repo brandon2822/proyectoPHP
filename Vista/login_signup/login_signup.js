@@ -3,13 +3,13 @@ var btnIngresar = document.getElementById('Ingresar');
 const input = document.getElementById('inputImagen');
 const preview = document.getElementById('imagenPreview');
 
-btnIngresar.addEventListener('DOMContentLoaded', function () {
-    if (usuario['correo'] == document.querySelector('#correo').value) {
+document.addEventListener('DOMContentLoaded', function () {
+    if (usuario != null) {
         alert("Usuario encontrado");
     } else {
         alert("Usuario no encontrado");
     }
-}); 
+});
 
 
     // if (resultado== null)  {

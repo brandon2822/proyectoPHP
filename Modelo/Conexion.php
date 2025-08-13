@@ -9,9 +9,11 @@ class Conexion
         $user = "root";
         $pass= "";
         $name= "milibrodb";
-        if(!$this->mysqli = new mysqli($host, $user, $pass, $name)){
-            die("Error al conectar a la base de datos");
-        }
+        $this->mysqli = new mysqli($host, $user, $pass, $name);
+            if ($this->mysqli->connect_error) {
+            die("Error de conexión: " . $this->mysqli->connect_error);
+            }
+
         //ejecutar el query
         $this->mysqli->autocommit(true);
         $resultado=$this->mysqli->query($sql);

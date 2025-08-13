@@ -34,14 +34,14 @@ class ControladorUsuario
     //         return $jsonUsuario; 
     // }
 
-   public function BuscarCorreo() {
+   public function LogIn() {
     if (isset($_POST['correo']) && isset($_POST['contrasena'])) {
         $correo = $_POST['correo'];
         $contrasena = $_POST['contrasena'];
         $usuarioM = new usuarioM();
-        $usuario = $usuarioM->BuscarCorreo($correo);
+        $usuario = $usuarioM->BuscarCorreo($correo, $contrasena);
 
-        if ($usuario !== null && $usuario->getContrasena() === $contrasena) {
+        if ($usuario !== null) {
             $jsonUsuario = $this->JSONusuario($usuario);
             echo $jsonUsuario;
             require_once "./Vista/menu/menu.php";
