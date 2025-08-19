@@ -6,6 +6,10 @@ include_once "./Modelo/Metodos/UsuarioM.php";
 class ControladorUsuario
 {
     private function JSONusuario($obj){
+        if ($obj == null) {
+            return "null";
+        }
+
         return json_encode([
             'id' => $obj->getId(),
             'nombre' => $obj->getNombre(),
@@ -20,36 +24,76 @@ class ControladorUsuario
         ]);
     }
 
-    // public function BuscarId($id){
-    //     if(isset($_POST[$id])){
-    //         $id=$_POST[$id];
-    //         $usuario = new =usuario();
-    //         $usuarioM=new usuarioM();
-    //         $usuario=$usuarioM->BuscarId($id);
-    //         $jsonUsuario = $this->JSONusuario($usuario);
-    //         }
-    //         else
-    //             echo "null";
-
-    //         return $jsonUsuario; 
-    // }
-
-   public function LogIn() {
-    if (isset($_POST['correo']) && isset($_POST['contrasena'])) {
-        $correo = $_POST['correo'];
-        $contrasena = $_POST['contrasena'];
-        $usuarioM = new usuarioM();
-        $usuario = $usuarioM->BuscarCorreo($correo, $contrasena);
-
-        if ($usuario !== null) {
-            $jsonUsuario = $this->JSONusuario($usuario);
-            echo $jsonUsuario;
-            require_once "./Vista/menu/menu.php";
-        } else {
-            echo "null";
-        }
-    } else {
-        echo "null";
+    public function Index() {
+        $jsonUsuario = "null";
+        include_once "./Vista/login_signup/login_signup.php";
     }
-}
+
+    public function LogIn() {
+        $jsonUsuario = "null";
+        if (isset($_POST['correo']) && isset($_POST['contrasena'])) {
+            $correo = $_POST['correo'];
+            $contrasena = $_POST['contrasena'];
+            $usuarioM = new usuarioM();
+            $usuario = $usuarioM->BuscarCorreo($correo, $contrasena);
+            $jsonUsuario = $this->JSONusuario($usuario);
+        }
+        include_once "./Vista/login_signup/login_signup.php";
+    }
+
+    public function SignUp() {
+        $usuarioCreado = false;
+        $mensaje = "";
+        $tipoMensaje = "error";
+        
+        if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['correo']) && 
+            isset($_POST['contrasena']) && isset($_POST['usuario']) && isset($_POST['fechaNacimiento']) && 
+            isset($_POST['pais'])) {
+            
+            // Validar que los campos no estén vacíos
+            if (!empty(trim($_POST['nombre'])) && !empty(trim($_POST['apellido'])) && 
+                !empty(trim($_POST['correo'])) && !empty(trim($_POST['contrasena'])) && 
+                !empty(trim($_POST['usuario'])) && !empty(trim($_POST['fechaNacimiento'])) && 
+                !empty(trim($_POST['pais']))) {
+                
+                $usuario = new Usuario();
+                $usuario->setNombre(trim($_POST['nombre']));
+                $usuario->setApellido(trim($_POST['apellido']));
+                $usuario->setCorreo(trim($_POST['correo']));
+                $usuario->setContrasena(trim($_POST['contrasena']));
+                $usuario->setUsuario(trim($_POST['usuario']));
+                $usuario->setFechaNacimiento($_POST['fechaNacimiento']);
+                $usuario->setPais(trim($_POST['pais']));
+                $usuario->setEstado(1); // Estado activo por defecto
+                $usuario->setTipo("Usuario"); // Tipo usuario por defecto
+
+                $usuarioM = new usuarioM();
+                
+                // Verificar si el correo o usuario ya existen
+                if ($usuarioM->VerificarExistencia($_POST['correo'], $_POST['usuario'])) {
+                    $mensaje = "El correo electrónico o nombre de usuario ya están registrados.";
+                    $tipoMensaje = "error";
+                } else {
+                    // Intentar insertar el usuario
+                    if ($usuarioM->Insertar($usuario)) {
+                        $usuarioCreado = true;
+                        $mensaje = "¡Registro exitoso! Serás redirigido al login en 3 segundos.";
+                        $tipoMensaje = "success";
+                    } else {
+                        $mensaje = "Error al crear el usuario. Por favor, inténtalo de nuevo.";
+                        $tipoMensaje = "error";
+                    }
+                }
+            } else {
+                $mensaje = "Por favor, completa todos los campos.";
+                $tipoMensaje = "error";
+            }
+        } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $mensaje = "Por favor, completa todos los campos requeridos.";
+            $tipoMensaje = "error";
+        }
+        
+        // Incluir la vista del formulario de registro
+        include_once "./Vista/login_signup/login_signup.php";
+    }
 }

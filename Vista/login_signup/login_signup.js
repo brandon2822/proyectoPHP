@@ -1,41 +1,40 @@
-
-var btnIngresar = document.getElementById('Ingresar');
-const input = document.getElementById('inputImagen');
-const preview = document.getElementById('imagenPreview');
-
 document.addEventListener('DOMContentLoaded', function () {
-    if (usuario != null) {
-        alert("Usuario encontrado");
+    console.log("DOM cargado, verificando usuario...");
+    console.log("Valor de usuario:", usuario);
+    console.log("Tipo de usuario:", typeof usuario);
+    
+    // Verificar si usuario existe y tiene datos válidos
+    if (usuario !== null && usuario !== undefined && typeof usuario === 'object') {
+        console.log("Usuario es un objeto:", usuario);
+        
+        // Verificar si el usuario tiene un ID válido
+        if (usuario.id && usuario.id !== null) {
+            console.log("Usuario válido encontrado, redirigiendo a menu...");
+            window.location.href = "./Vista/menu/menu.php";
+        } else {
+            console.log("Usuario sin ID válido");
+            // Solo mostrar error si venimos de un intento de login
+            if (window.location.search.includes('metodo=login')) {
+                mostrarError("Error en los datos del usuario");
+            }
+        }
     } else {
-        alert("Usuario no encontrado");
+        console.log("No hay usuario válido");
+        // Solo mostrar error si venimos de un intento de login
+        if (window.location.search.includes('metodo=login')) {
+            mostrarError("Usuario no encontrado. Verifica tu correo y contraseña.");
+        }
     }
 });
 
-
-    // if (resultado== null)  {
-    //     alert("Usuario no encontrado");
-    //     clear();
-    // }else {
-    //     alert("Ha ingresado correctamente");
-    //     clear();
-    //     window.location.href = "./Vista/menu/menu.php";
-    // }
-    
-
-function clear(){
-    document.querySelector('#correo').value ="";
-    document.querySelector('#contrasena').value ="";
+function mostrarError(mensaje) {
+    alert(mensaje);
+    limpiarFormulario();
 }
 
-// input.addEventListener('change', function () {
-//     const file = this.files[0];
-//     if (file) {
-//         const reader = new FileReader();
-//         reader.onload = function (e) {
-//             preview.style.backgroundImage = `url('${e.target.result}')`;
-//         };
-//         reader.readAsDataURL(file);
-//     }
-// });
-
-
+function limpiarFormulario() {
+    const form = document.querySelector('.formulario');
+    if (form) {
+        form.reset();
+    }
+}
