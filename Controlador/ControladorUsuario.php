@@ -41,10 +41,11 @@ class ControladorUsuario
         include_once "./Vista/login_signup/login_signup.php";
     }
 
-    public function SignUp() {
+    public function Signup() {
         $usuarioCreado = false;
         $mensaje = "";
         $tipoMensaje = "error";
+        $usuarioRegistrado = null; // Variable para almacenar el usuario creado
         
         if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['correo']) && 
             isset($_POST['contrasena']) && isset($_POST['usuario']) && isset($_POST['fechaNacimiento']) && 
@@ -77,8 +78,17 @@ class ControladorUsuario
                     // Intentar insertar el usuario
                     if ($usuarioM->Insertar($usuario)) {
                         $usuarioCreado = true;
-                        $mensaje = "¡Registro exitoso! Serás redirigido al login en 3 segundos.";
+                        $mensaje = "¡Registro exitoso! Serás redirigido al menú en 3 segundos.";
                         $tipoMensaje = "success";
+                        
+                        // Buscar el usuario recién creado para tener sus datos completos
+                        $usuarioRegistrado = $usuarioM->BuscarCorreo($_POST['correo'], $_POST['contrasena']);
+                        
+                        // Iniciar sesión automáticamente
+                        if ($usuarioRegistrado) {
+                            session_start();
+                            $_SESSION['usuario'] = $usuarioRegistrado;
+                        }
                     } else {
                         $mensaje = "Error al crear el usuario. Por favor, inténtalo de nuevo.";
                         $tipoMensaje = "error";
@@ -93,7 +103,13 @@ class ControladorUsuario
             $tipoMensaje = "error";
         }
         
+        // Siempre incluir la misma vista
+        // Si el usuario fue creado exitosamente, preparar variables para redirección
+        if ($usuarioCreado && $usuarioRegistrado) {
+            $jsonUsuario = $this->JSONusuario($usuarioRegistrado);
+        }
+        
         // Incluir la vista del formulario de registro
-        include_once "./Vista/login_signup/login_signup.php";
+        include_once "./Vista/newuser/newuser.php";
     }
 }

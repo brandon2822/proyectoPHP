@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Datos Personales</title>
-    <link rel="stylesheet" href="newuser.css" />
+    <link rel="stylesheet" href="/PROYECTO/Vista/newuser/newuser.css" />
 </head>
 <body>
-<a href="./Vista/login_signup/login_signup.php" class="back-arrow">
+<a href="/PROYECTO/Vista/login_signup/login_signup.php" class="back-arrow">
     &#8592;
 </a>
 <div class="fondo-overlay"></div>
 <div class="contenedor">
     <div class="columna-izquierda">
         <div class="logo-libronet">
-            <img src="../imagenes/logo.png.png" alt="Logo LibroNet" />
+            <img src="/PROYECTO/Vista/imagenes/logo.png.png" alt="Logo LibroNet" />
         </div>
-        <form class="formulario-datos" action="./index.php?controlador=usuario&metodo=signup" method="POST">
+        <form class="formulario-datos" action="/PROYECTO/index.php?controlador=usuario&metodo=signup" method="POST">
             <h2>Datos personales</h2>
             
             <?php if (isset($mensaje)): ?>
@@ -49,18 +49,23 @@
             <button type="submit" id="btn-guardar">Guardar</button>
         </form>
     </div>
+</div>
 
 <script>
     <?php if (isset($usuarioCreado) && $usuarioCreado === true): ?>
         var usuarioCreado = true;
         var mensaje = "<?php echo isset($mensaje) ? addslashes($mensaje) : ''; ?>";
+        <?php if (isset($jsonUsuario)): ?>
+            var jsonUsuario = <?php echo $jsonUsuario; ?>;
+            console.log("Datos del usuario:", jsonUsuario);
+        <?php endif; ?>
         console.log("Usuario creado exitosamente");
     <?php else: ?>
         var usuarioCreado = false;
-        var mensaje = "";
+        var mensaje = "<?php echo isset($mensaje) ? addslashes($mensaje) : ''; ?>";
         console.log("Usuario no creado o error en el proceso");
     <?php endif; ?>
 </script>
-<script src="./Vista/newuser/newuser.js"></script>
+<script src="/PROYECTO/Vista/newuser/newuser.js"></script>
 </body>
 </html>

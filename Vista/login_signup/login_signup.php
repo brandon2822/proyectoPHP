@@ -23,7 +23,7 @@
                 <button type="submit" class="btn-ingresar" id="Ingresar">Ingresar</button>
                 <div class="enlaces">
                     <a href="./Vista/newuser/newuser.php">¿Aún no tienes cuenta? ¡Créala ahora!</a>
-                    <a href="./Vista/forgotpassword/forgotpassword.php">Olvidé mi contraseña</a>
+                    
                     
                 </div>
             </form>

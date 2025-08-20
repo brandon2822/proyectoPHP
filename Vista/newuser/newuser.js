@@ -12,10 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
             mostrarMensaje(mensaje, 'success');
         }
         
-        // Redirigir al login después de 3 segundos
+        // Redirigir al menú después de 3 segundos
         setTimeout(function() {
-            console.log("Redirigiendo al login...");
-            window.location.href = "./Vista/login_signup/login_signup.php";
+            console.log("Redirigiendo al menú...");
+            // Usar ruta absoluta para evitar problemas de navegación
+            window.location.href = "/PROYECTO/index.php?controlador=menu&metodo=index";
         }, 3000);
         
     } else if (mensaje && mensaje !== "") {
